@@ -1,0 +1,40 @@
+{
+  "name": "parlour-billing-api",
+  "version": "1.0.0",
+  "description": "Multi-tenant billing API for parlours and salons",
+  "private": true,
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "db:init": "node db/init.js",
+    "db:seed": "node db/seed.js",
+    "test": "node --test tests/smoke.test.js",
+    "superadmin:create": "node db/create-superadmin.js",
+    "test:unit": "node --test tests/attendance.unit.test.js tests/attendance.service.test.js tests/logging.unit.test.js tests/idempotency.unit.test.js tests/cleanup.unit.test.js tests/phone.unit.test.js tests/report.unit.test.js tests/gst.unit.test.js tests/gst.service.test.js tests/payments.unit.test.js tests/payments.service.test.js tests/commission.unit.test.js tests/commissions.service.test.js tests/mobile-login.unit.test.js tests/mobile-login.service.test.js tests/appointments.unit.test.js tests/appointments.service.test.js tests/performer-attendance.service.test.js",
+    "test:attendance": "node --test tests/attendance.test.js",
+    "test:performer-attendance": "node --test tests/performer-attendance.test.js",
+    "test:db": "node --test --test-concurrency=1 tests/cleanup.db.test.js tests/gst.db.test.js tests/payments.db.test.js tests/commissions.db.test.js tests/mobile-login.db.test.js tests/appointments.db.test.js tests/performer-attendance.db.test.js",
+    "report:customer-phones": "node db/report-customer-phone-collisions.js",
+    "report:user-mobiles": "node db/report-user-mobile-collisions.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.0",
+    "pg": "^8.16.3",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
